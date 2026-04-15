@@ -239,9 +239,12 @@ def subscribe_newsletter(data: Newsletter):
 def global_stats():
     return {'total_readers': '2.4M+', 'articles_published': '1,247', 'expert_contributors': '89', 'countries_reached': '147'}
 
+# Static dirs and mount MUST come before the catch-all route
 os.makedirs('static', exist_ok=True)
 os.makedirs('static/css', exist_ok=True)
 os.makedirs('static/js', exist_ok=True)
+
+# Mount static BEFORE catch-all route
 app.mount('/static', StaticFiles(directory='static'), name='static')
 
 @app.get('/')
